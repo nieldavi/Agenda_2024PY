@@ -13,62 +13,22 @@
         </div>
     </div>
     <!-- Lista de contatos -->
-
     <ul class="list-group shadow mt-3">
-        <li class="list-group-item d-flex align-items-center mb-2">
-            <img src="https://observatoriodatv.uol.com.br/wp-content/uploads/2019/12/selton-mello2.jpg"
-                class="rounded-circle me-3 imgContato" alt="Foto de Maria Silva">
-            <div class="flex-grow-1">
-                <a href="{% url 'contato' %}" class="text-decoration-none">Chicó</a>
-            </div>
-            <span>
-                <i class="bi bi-pencil-square text-primary" style="cursor:pointer;"></i>
-                <i class="bi bi-trash-fill text-danger ms-2" style="cursor:pointer;"></i>
-            </span>
-        </li>
-        <li class="list-group-item d-flex align-items-center mb-2">
-            <img src="https://s2-memoriaglobo.glbimg.com/T68v464em3FZpM2aZHjW-Sj2-aM=/0x73:392x551/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_ee6202d7f3f346a7a5d7affb807d8893/internal_photos/bs/2023/g/N/sUWieXQ4eBAR3ubj7zWA/oautodacompadecida-matheus-nachtergaele.jpg"
-                class="rounded-circle me-3 imgContato" alt="Foto de Maria Silva">
-            <div class="flex-grow-1">
-                <a href="{% url 'contato'%}" class="text-decoration-none">João Grilo</a>
-            </div>
-            <span>
-                <i class="bi bi-pencil-square text-primary" style="cursor:pointer;"></i>
-                <i class="bi bi-trash-fill text-danger ms-2" style="cursor:pointer;"></i>
-            </span>
-        </li>
-        <li class="list-group-item d-flex align-items-center mb-2">
-            <img src="https://pbs.twimg.com/media/E-31y6OXoAE0YiL.jpg" class="rounded-circle me-3 imgContato"
-                alt="Foto de Maria Silva">
-            <div class="flex-grow-1">
-                <a href="{% url 'contato' %}" class="text-decoration-none">Rosinha</a>
-            </div>
-            <span>
-                <i class="bi bi-pencil-square text-primary" style="cursor:pointer;"></i>
-                <i class="bi bi-trash-fill text-danger ms-2" style="cursor:pointer;"></i>
-            </span>
-        </li>
-        <li class="list-group-item d-flex align-items-center mb-2">
-            <img src="https://conteudo.imguol.com.br/c/galeria/6a/2023/03/15/diogo-vilela-em-o-auto-da-compadecida-1678915413077_v2_450x800.jpg"
-                class="rounded-circle me-3 imgContato" alt="Foto de Maria Silva">
-            <div class="flex-grow-1">
-                <a href="{% url 'contato'%}" class="text-decoration-none">Eurico</a>
-            </div>
-            <span>
-                <i class="bi bi-pencil-square text-primary" style="cursor:pointer;"></i>
-                <i class="bi bi-trash-fill text-danger ms-2" style="cursor:pointer;"></i>
-            </span>
-        </li>
+        {%if conts %}
+        {% for info in conts%}
         <li class="list-group-item d-flex align-items-center mb-2">
             <img src="https://static1.purepeople.com.br/articles/0/11/34/0/@/89352-denise-e-dora-em-o-auto-da-580x0-1.jpg"
                 class="rounded-circle me-3 imgContato" alt="Foto de Maria Silva">
             <div class="flex-grow-1">
-                <a href="{% url 'contato'%}" class="text-decoration-none">Dora</a>
+                <a href="{% url 'contato' info.id %}" class="text-decoration-none">{{info.nome}}</a>
             </div>
             <span>
                 <i class="bi bi-pencil-square text-primary" style="cursor:pointer;"></i>
                 <i class="bi bi-trash-fill text-danger ms-2" style="cursor:pointer;"></i>
             </span>
+        {%endfor%}
+        {%else%}
+        {%endif%}
         </li>
         <!-- Repita o formato do item acima para cada contato -->
     </ul>
