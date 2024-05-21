@@ -8,7 +8,11 @@
             <!-- Conteúdo da página -->
             <div class="container my-4">
                 <div class="card">
+                    {% if contato.imagem == '' or contato.imagem == null%}
                     <img src="https://via.placeholder.com/100" class="card-img-top" alt="Foto do Contato" style="width: 100px; margin: auto;">
+                    {%else%}
+                    <img src="{{contato.imagem.url}}" class="card-img-top" alt="Foto do Contato" style="width: 100px; margin: auto;">
+                    {%endif%}
                     <div class="card-body">
                         <h5 class="card-title">{{contato.nome}}</h5>
                         <p class="card-text"><strong>Número de Telefone:</strong>{{contato.telefone}}</p>
