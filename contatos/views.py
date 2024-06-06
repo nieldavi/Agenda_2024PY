@@ -1,12 +1,14 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.urls import path
+from django.shortcuts import render, get_object_or_404, rfrom django.urls import path
 from contatos.models import Contato
+from django.contrib import messages
 
 # Create your views here.
 
 # Create your views here.
 def index(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Você precisa estar logado para acessar essa página!')
+        return redirect('login')
     contatos = Contato.objects.all()
     return render(request, 'contatos/index.html', {'conts': contatos} )
 

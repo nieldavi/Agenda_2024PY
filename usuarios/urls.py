@@ -6,5 +6,4 @@ urlpatterns = [
     path('cadastrar/', cadastrar, name='cadastrar'),
     path('logout', logout, name='logout'),
 
-    
 ]
