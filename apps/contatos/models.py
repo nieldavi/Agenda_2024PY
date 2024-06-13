@@ -11,7 +11,7 @@ class Contato(models.Model):
                                 on_delete= models.CASCADE,
                                 null =False,
                                 blank=False,
-                                related_name="User")
+                                related_name="user")
     
 
 def __str__(self):
