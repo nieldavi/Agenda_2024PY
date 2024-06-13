@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404, rfrom django.urls import path
-from contatos.models import Contato
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import path
+from apps.contatos.models import Contato
 from django.contrib import messages
+from apps.contatos.forms import ContatoForm
 
 # Create your views here.
 
@@ -24,3 +26,18 @@ def buscar(request):
         if nome:
             contatos = Contato.objects.filter(nome__icontains=nome)
     return render(request, 'contatos/buscar.html', {'conts': contatos})
+
+def novo_contato(request):
+    if not request.user.is_authenticated:
+        messages.error(request, 'Você precisa estar logado para acessar essa página!')
+        return redirect('login')
+    form =ContatoForm()
+    if request.method == 'POST':
+        form = ContatoForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Contato salvo com sucesso!')
+            return redirect('index')
+        else:
+            messages.error(request, 'Erro ao salvar contato!')
+    return render(request, 'contatos/novo_contato.html', {'form': form})

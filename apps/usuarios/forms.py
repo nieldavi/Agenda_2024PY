@@ -45,3 +45,11 @@ class CadastroForms(forms.Form):
                                           "placeholder": "Digite sua senha novamente"}
                                ),
                                max_length = 100)
+    def clean_username(self):
+        name = self.cleaned_data['username']
+        if name:
+            name = name.strip()
+            if " " in name:
+                raise forms.ValidationError("O usuario não pode ser vazio!")
+            else:
+                return name
